@@ -1,0 +1,14 @@
+# FinSight monorepo
+.DS_Store
+*.pem
+*.log
+
+# Next.js app
+finsight/node_modules/
+finsight/.next/
+finsight/out/
+finsight/.vercel
+finsight/.env*.local
+finsight/.env.development
+finsight/.env.production
+finsight/*.tsbuildinfo
