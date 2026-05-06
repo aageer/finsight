@@ -17,3 +17,7 @@ finsight/*.tsbuildinfo
 *.pdf
 *.docx
 *.pptx
+
+# Large binary files
+*.zip
+*.mp4
