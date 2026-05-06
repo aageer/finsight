@@ -178,6 +178,87 @@ export function getPortfolioHoldings() {
   ];
 }
 
+// ─── Mock Fallbacks for API Routes ────────────────────
+export function getMockQuote(symbol: string): StockQuote {
+  const found = [...MOCK_INDICES, ...MOCK_HOLDINGS_QUOTES].find(
+    (q) => q.symbol === symbol
+  );
+  if (found) return found;
+  // Generate a plausible mock for unknown symbols
+  return {
+    symbol,
+    name: symbol,
+    price: 100 + Math.random() * 200,
+    change: (Math.random() - 0.5) * 10,
+    changePercent: (Math.random() - 0.5) * 5,
+    volume: Math.floor(Math.random() * 50_000_000),
+    avgVolume: Math.floor(Math.random() * 40_000_000),
+    marketCap: Math.floor(Math.random() * 500_000_000_000),
+    pe: 15 + Math.random() * 40,
+    eps: 2 + Math.random() * 10,
+    high52w: 250,
+    low52w: 80,
+    open: 100 + Math.random() * 200,
+    previousClose: 100 + Math.random() * 200,
+    dayHigh: 100 + Math.random() * 210,
+    dayLow: 90 + Math.random() * 190,
+    timestamp: new Date().toISOString(),
+  };
+}
+
+export function getMockHistory(symbol: string) {
+  // Generate 252 trading days of plausible data
+  const data = [];
+  let price = symbol === "NVDA" ? 90 : symbol === "AAPL" ? 165 : 150;
+  const today = new Date();
+  for (let i = 252; i >= 0; i--) {
+    const date = new Date(today);
+    date.setDate(date.getDate() - i);
+    if (date.getDay() === 0 || date.getDay() === 6) continue;
+    const change = (Math.random() - 0.48) * price * 0.03;
+    price = Math.max(10, price + change);
+    data.push({
+      date: date.toISOString().split("T")[0],
+      open: +(price - Math.random() * 2).toFixed(2),
+      high: +(price + Math.random() * 3).toFixed(2),
+      low: +(price - Math.random() * 3).toFixed(2),
+      close: +price.toFixed(2),
+      volume: Math.floor(20_000_000 + Math.random() * 30_000_000),
+    });
+  }
+  return data;
+}
+
+export function getMockProfile(symbol: string) {
+  const profiles: Record<string, { name: string; sector: string; industry: string; description: string; marketCap: number; exchange: string }> = {
+    AAPL: { name: "Apple Inc.", sector: "Technology", industry: "Consumer Electronics", description: "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide.", marketCap: 2_950_000_000_000, exchange: "NASDAQ" },
+    MSFT: { name: "Microsoft Corporation", sector: "Technology", industry: "Software—Infrastructure", description: "Microsoft Corporation develops, licenses, and supports software, services, devices, and solutions worldwide.", marketCap: 3_130_000_000_000, exchange: "NASDAQ" },
+    NVDA: { name: "NVIDIA Corporation", sector: "Technology", industry: "Semiconductors", description: "NVIDIA Corporation provides graphics, and compute and networking solutions in the United States, Taiwan, China, Hong Kong, and internationally.", marketCap: 3_510_000_000_000, exchange: "NASDAQ" },
+    GOOGL: { name: "Alphabet Inc.", sector: "Communication Services", industry: "Internet Content & Information", description: "Alphabet Inc. offers various products and platforms in the United States, Europe, the Middle East, Africa, the Asia-Pacific, Canada, and Latin America.", marketCap: 2_180_000_000_000, exchange: "NASDAQ" },
+    AMZN: { name: "Amazon.com, Inc.", sector: "Consumer Cyclical", industry: "Internet Retail", description: "Amazon.com, Inc. engages in the retail sale of consumer products, advertising, and subscription services through online and physical stores worldwide.", marketCap: 2_060_000_000_000, exchange: "NASDAQ" },
+    META: { name: "Meta Platforms, Inc.", sector: "Communication Services", industry: "Internet Content & Information", description: "Meta Platforms, Inc. engages in the development of products that enable people to connect and share with friends and family.", marketCap: 1_380_000_000_000, exchange: "NASDAQ" },
+    TSLA: { name: "Tesla, Inc.", sector: "Consumer Cyclical", industry: "Auto Manufacturers", description: "Tesla, Inc. designs, develops, manufactures, leases, and sells electric vehicles, and energy generation and storage systems worldwide.", marketCap: 795_000_000_000, exchange: "NASDAQ" },
+  };
+  const p = profiles[symbol] || { name: symbol, sector: "Unknown", industry: "Unknown", description: `${symbol} is a publicly traded company.`, marketCap: 100_000_000_000, exchange: "NYSE" };
+  return {
+    symbol,
+    name: p.name,
+    sector: p.sector,
+    industry: p.industry,
+    description: p.description,
+    ceo: "",
+    employees: 0,
+    headquarters: "United States",
+    website: "",
+    marketCap: p.marketCap,
+    exchange: p.exchange,
+  };
+}
+
+export function getMockNews(): NewsArticle[] {
+  return MOCK_NEWS;
+}
+
 export function getAgentStatuses() {
   return [
     { id: "1", name: "AnalysisAgent", type: "ANALYSIS" as const, status: "IDLE" as const, description: "Multi-factor stock analysis" },

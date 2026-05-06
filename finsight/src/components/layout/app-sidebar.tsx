@@ -13,21 +13,25 @@ import {
   Settings,
   TrendingUp,
   Bot,
+  Brain,
+  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/portfolio", label: "Portfolio", icon: Briefcase },
-  { href: "/watchlist", label: "Watchlist", icon: Eye },
-  { href: "/analysis", label: "Analysis", icon: BarChart3 },
-  { href: "/autoresearch", label: "Autoresearch", icon: FlaskConical },
-  { href: "/swarm", label: "Swarm Studio", icon: Users },
-  { href: "/terminal", label: "Terminal", icon: Terminal },
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard, key: "F1" },
+  { href: "/portfolio", label: "Portfolio", icon: Briefcase, key: "F2" },
+  { href: "/watchlist", label: "Watchlist", icon: Eye, key: "F3" },
+  { href: "/analysis", label: "Analysis", icon: BarChart3, key: "F4" },
+  { href: "/agents-console", label: "Agents", icon: Brain, key: "F5" },
+  { href: "/trading", label: "Trading", icon: Zap, key: "F6" },
+  { href: "/autoresearch", label: "Research", icon: FlaskConical, key: "F7" },
+  { href: "/swarm", label: "Swarm", icon: Users, key: "F8" },
+  { href: "/terminal", label: "Terminal", icon: Terminal, key: "F9" },
 ];
 
 const BOTTOM_ITEMS = [
-  { href: "/settings", label: "Settings", icon: Settings },
+  { href: "/settings", label: "Settings", icon: Settings, key: "" },
 ];
 
 export function AppSidebar({ collapsed }: { collapsed: boolean }) {
@@ -36,25 +40,24 @@ export function AppSidebar({ collapsed }: { collapsed: boolean }) {
   return (
     <aside
       className={cn(
-        "fixed left-0 top-0 z-40 flex h-screen flex-col border-r border-border bg-[oklch(0.06_0_0)] transition-all duration-200",
-        collapsed ? "w-16" : "w-56"
+        "fixed left-0 top-0 z-40 flex h-screen flex-col border-r border-border bg-[#050505] transition-all duration-200",
+        collapsed ? "w-12" : "w-44"
       )}
     >
-      <div className="flex h-14 items-center gap-2 border-b border-border px-4">
-        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-[var(--color-accent-orange)]">
-          <TrendingUp className="h-4 w-4 text-black" />
+      {/* Logo */}
+      <div className="flex h-10 items-center gap-1.5 border-b border-border px-3">
+        <div className="flex h-6 w-6 items-center justify-center rounded-sm bg-[var(--color-accent-orange)]">
+          <TrendingUp className="h-3 w-3 text-black" />
         </div>
         {!collapsed && (
-          <div className="flex items-center gap-1.5">
-            <span className="font-mono-terminal text-base font-bold tracking-tight text-[var(--color-accent-orange)]">
-              FinSight
-            </span>
-            <Bot className="h-3.5 w-3.5 text-muted-foreground" />
-          </div>
+          <span className="font-mono-terminal text-xs font-bold tracking-tight text-[var(--color-accent-orange)]">
+            FinSight
+          </span>
         )}
       </div>
 
-      <nav className="flex flex-1 flex-col gap-1 px-2 py-3">
+      {/* Nav Items */}
+      <nav className="flex flex-1 flex-col gap-0.5 px-1 py-2">
         {NAV_ITEMS.map((item) => {
           const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
           return (
@@ -62,20 +65,28 @@ export function AppSidebar({ collapsed }: { collapsed: boolean }) {
               key={item.href}
               href={item.href}
               className={cn(
-                "group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                "group flex items-center gap-2 rounded-sm px-2 py-1.5 font-mono-terminal text-[10px] font-medium transition-colors",
                 isActive
                   ? "bg-[var(--color-accent-orange)]/10 text-[var(--color-accent-orange)]"
-                  : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                  : "text-[oklch(0.5_0_0)] hover:bg-[#111] hover:text-[oklch(0.75_0_0)]"
               )}
             >
-              <item.icon className={cn("h-4 w-4 shrink-0", isActive && "text-[var(--color-accent-orange)]")} />
-              {!collapsed && <span>{item.label}</span>}
+              <item.icon className={cn("h-3.5 w-3.5 shrink-0", isActive && "text-[var(--color-accent-orange)]")} />
+              {!collapsed && (
+                <>
+                  <span className="flex-1">{item.label}</span>
+                  <span className="text-[8px] text-[oklch(0.35_0_0)] group-hover:text-[oklch(0.45_0_0)]">
+                    {item.key}
+                  </span>
+                </>
+              )}
             </Link>
           );
         })}
       </nav>
 
-      <div className="border-t border-border px-2 py-3">
+      {/* Bottom */}
+      <div className="border-t border-border px-1 py-2">
         {BOTTOM_ITEMS.map((item) => {
           const isActive = pathname === item.href;
           return (
@@ -83,13 +94,13 @@ export function AppSidebar({ collapsed }: { collapsed: boolean }) {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                "flex items-center gap-2 rounded-sm px-2 py-1.5 font-mono-terminal text-[10px] font-medium transition-colors",
                 isActive
                   ? "bg-[var(--color-accent-orange)]/10 text-[var(--color-accent-orange)]"
-                  : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                  : "text-[oklch(0.5_0_0)] hover:bg-[#111] hover:text-[oklch(0.75_0_0)]"
               )}
             >
-              <item.icon className="h-4 w-4 shrink-0" />
+              <item.icon className="h-3.5 w-3.5 shrink-0" />
               {!collapsed && <span>{item.label}</span>}
             </Link>
           );

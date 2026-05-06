@@ -12,3 +12,8 @@ finsight/.env*.local
 finsight/.env.development
 finsight/.env.production
 finsight/*.tsbuildinfo
+
+# Binary documents (keep repo clean)
+*.pdf
+*.docx
+*.pptx

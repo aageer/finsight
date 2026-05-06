@@ -123,7 +123,7 @@ Traditional financial platforms are **passive** — they display data and wait f
 ### AI & Agent Layer
 | Component | Technology | Purpose |
 |-----------|-----------|---------|
-| LLM | Claude API (Anthropic) + OpenAI | Primary reasoning engine for analysis agents |
+| LLM | Google Gemini 2.5 Pro + Flash | Primary reasoning engine for analysis agents |
 | Agent Framework | LangGraph / CrewAI | Multi-agent orchestration and workflow graphs |
 | Embeddings | OpenAI text-embedding-3-small | Document vectorization for RAG |
 | Knowledge Graph | Neo4j + LangChain GraphRAG | Structured knowledge extraction (MiroFish pattern) |
@@ -1187,7 +1187,7 @@ Carry forward all settings from the base prompts (Profile, Preferences, Notifica
 
 #### AI & Agent Settings Tab
 - **Agent Permissions** — Per-agent toggle: enable/disable, set rate limits
-- **LLM Provider Selection** — Choose between Claude, GPT-4, or local models per agent
+- **LLM Provider Selection** — Choose between Gemini Pro, Gemini Flash, or local models per agent
 - **Token Budget** — Monthly token usage limit with alerts at 80% and 100%
 - **Reasoning Transparency** — Toggle: always show agent reasoning chains vs. summary only
 - **Autoresearch Limits** — Max experiments per program, compute budget, auto-stop conditions
@@ -1324,8 +1324,8 @@ python -m uvicorn main:app --reload --port 8000
 | Service | Purpose | Free Tier |
 |---------|---------|-----------|
 | Alpha Vantage / Financial Modeling Prep | Market data | Yes (limited) |
-| Anthropic (Claude) | Primary LLM for agents | Pay per token |
-| OpenAI | Embeddings + fallback LLM | Pay per token |
+| Google Gemini | Primary LLM for agents | Free tier available |
+| Alpha Vantage | Market data provider | Free tier available |
 | Finnhub | WebSocket price streaming | Yes (limited) |
 | Neo4j Aura | Knowledge graph (or run locally) | Free tier available |
 

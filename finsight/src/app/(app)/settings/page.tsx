@@ -204,7 +204,7 @@ export default function SettingsPage() {
                       OpenAI
                     </Badge>
                     <Badge variant="outline" className="font-mono-terminal text-[10px] text-muted-foreground">
-                      Anthropic
+                      Google Gemini
                     </Badge>
                   </div>
                   <p className="font-mono-terminal text-xs text-muted-foreground">

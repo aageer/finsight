@@ -19,37 +19,37 @@ const FEATURES = [
   {
     icon: Bot,
     title: "Multi-Agent Analysis",
-    description: "6 specialized AI agents analyze fundamentals, technicals, news, peers, risk, and knowledge graphs in parallel.",
+    description: "8 Gemini-powered agents: 4 Analysts → Bull/Bear Debate → Trader → Risk Manager → Report. Inspired by TradingAgents & ai-hedge-fund.",
     color: "#ff6600",
   },
   {
     icon: FlaskConical,
-    title: "Autoresearch Engine",
-    description: "Karpathy-inspired autonomous research loops. Define goals, agents discover strategies overnight.",
+    title: "Quants for Everyone",
+    description: "RSI, MACD, Bollinger Bands, SMA crossovers computed in pure JS — then explained in plain English by AI. Wall Street, decoded.",
     color: "#00d26a",
   },
   {
     icon: Users,
-    title: "Swarm Simulation",
-    description: "MiroShark-powered swarm intelligence. Hundreds of AI agents simulate market reactions before they happen.",
+    title: "Investor Personas",
+    description: "Agents inspired by Buffett, Damodaran, Cathie Wood, and Michael Burry debate your stock's future in real-time.",
     color: "#3b82f6",
   },
   {
     icon: BarChart3,
-    title: "Bloomberg-Grade Dashboard",
-    description: "Information-dense, keyboard-driven terminal UI. Real-time data, portfolio tracking, and smart alerts.",
+    title: "Bloomberg × OpenBB Dashboard",
+    description: "Information-dense, keyboard-driven UI. Real-time data, portfolio tracking, market movers — inspired by OpenBB & Bloomberg.",
     color: "#a855f7",
   },
   {
     icon: Shield,
-    title: "AI Risk Agent",
-    description: "Continuous portfolio risk monitoring with VaR, stress testing, and anomaly detection.",
+    title: "AI Risk Manager",
+    description: "Nassim Taleb-inspired risk analysis: volatility, max drawdown, and VaR computed before every trade recommendation.",
     color: "#f59e0b",
   },
   {
     icon: Terminal,
     title: "Terminal Interface",
-    description: "Bloomberg-style command palette. Natural language and structured commands for power users.",
+    description: "Bloomberg-style command palette. Type 'analyze NVDA' and watch 8 agents work in parallel.",
     color: "#ec4899",
   },
 ];
@@ -95,9 +95,9 @@ export default function LandingPage() {
           <span className="text-[#ff6600]">Financial Intelligence</span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-400">
-          A Bloomberg Terminal-style platform fusing multi-agent analysis, autonomous research
-          (Karpathy&apos;s Autoresearch), and swarm simulation (MiroShark/MiroFish) into a single
-          agentic system.
+          A Bloomberg Terminal-style platform fusing multi-agent analysis (Gemini 2.5 Pro),
+          quantitative indicators, and AI-powered investment debates into a single
+          agentic system — making Wall Street-grade analysis accessible to everyone.
         </p>
 
         <div className="mt-10 flex items-center justify-center gap-4">
@@ -164,7 +164,7 @@ export default function LandingPage() {
         <div className="mx-auto max-w-6xl px-6 text-center">
           <h2 className="mb-8 font-mono text-xs uppercase tracking-wider text-zinc-500">Built With</h2>
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-zinc-500">
-            {["Next.js 14", "TypeScript", "Tailwind CSS", "Supabase", "Groq (Free LLM)", "shadcn/ui", "Recharts", "Zustand", "TanStack Query", "Vercel"].map((tech) => (
+            {["Next.js 16", "TypeScript", "Tailwind CSS", "Gemini 2.5 Pro", "Google AI Studio", "shadcn/ui", "Recharts", "Zustand", "TanStack Query", "Alpha Vantage"].map((tech) => (
               <span key={tech} className="rounded-full border border-[oklch(0.15_0_0)] px-3 py-1 font-mono text-xs">
                 {tech}
               </span>
@@ -177,7 +177,7 @@ export default function LandingPage() {
       <footer className="border-t border-[oklch(0.15_0_0)] py-8">
         <div className="mx-auto max-w-6xl px-6 text-center">
           <p className="font-mono text-xs text-zinc-600">
-            FinSight — CSCI 5801 Advanced AI — 100% Free & Open Source — No Paid APIs Required
+            FinSight — CSCI 5801 Advanced AI — Powered by Gemini Ultra — Free & Open Source
           </p>
         </div>
       </footer>

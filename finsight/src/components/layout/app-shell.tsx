@@ -16,12 +16,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div
         className={cn(
           "flex flex-1 flex-col transition-all duration-200",
-          sidebarOpen ? "ml-56" : "ml-16"
+          sidebarOpen ? "ml-44" : "ml-12"
         )}
       >
         <MarketTicker />
         <AppHeader />
-        <main className="flex-1 overflow-auto p-4">{children}</main>
+        <main className="flex-1 overflow-auto p-2">{children}</main>
       </div>
       <CommandPalette />
     </div>
