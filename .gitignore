@@ -21,3 +21,11 @@ finsight/*.tsbuildinfo
 # Large binary files
 *.zip
 *.mp4
+
+# Project docs and reports (submitted separately, not in source repo)
+IEEE_Paper/
+*.ipynb
+Teammate_Report_*.md
+Final_Project_report.md
+ProjectGuide.md
+finsight_research.md
